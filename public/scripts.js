@@ -1,6 +1,17 @@
 const socket = io('http://localhost:8000', { transports: ['websocket'] });
+const socket2 = io('http://localhost:8000/admin', { transports: ['websocket'] });
 socket.on('connect', () => {
   socket.on('welcome', (msg) => {
+    console.log(msg);
+  });
+});
+
+socket.on('join', (msg) => {
+  console.log(msg);
+});
+
+socket2.on('connect', () => {
+  socket2.on('welcome', (msg) => {
     console.log(msg);
   });
 });
