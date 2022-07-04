@@ -22,6 +22,13 @@ io.on('connection', (socket) => {
   socket.on('chat message', (msg) => {
     io.emit('chat message', msg);
   });
+
+  socket.join('room1');
+  socket.to('room1').emit('join', `${socket.id}: I have joined room1!`);
+});
+
+io.of('/admin').on('connection', (socket) => {
+  io.of('/admin').emit('welcome', 'Welcome to the admin channel!');
 });
 
 server.listen(8000, () => {
